@@ -16,8 +16,8 @@ NMI_VERSION_VAR := $(REPO_PATH)/version.NMIVersion
 MIC_VERSION_VAR := $(REPO_PATH)/version.MICVersion
 GIT_VAR := $(REPO_PATH)/version.GitCommit
 BUILD_DATE_VAR := $(REPO_PATH)/version.BuildDate
-BUILD_DATE := $$(date +%Y-%m-%d-%H:%M)
-GIT_HASH := $$(git rev-parse --short HEAD)
+BUILD_DATE := $(shell date +%Y-%m-%d-%H:%M)
+GIT_HASH := $(shell git rev-parse HEAD)
 
 ifeq ($(OS),Windows_NT)
 	GO_BUILD_MODE = default
