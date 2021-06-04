@@ -235,11 +235,11 @@ curl -s https://raw.githubusercontent.com/Azure/aad-pod-identity/master/hack/rol
 &lt;tbody>
 &lt;tr>
 &lt;td>AKS cluster with service principal&lt;/td>
-&lt;td>&lt;code>az aks show -g &amp;lt;AKSResourceGroup&amp;gt; -n &amp;lt;AKSClusterName&amp;gt; --query servicePrincipalProfile.clientId -otsv&lt;/code>&lt;/td>
+&lt;td>&lt;code>az aks show -g &amp;lt;AKSResourceGroup&amp;gt; -n &amp;lt;AKSClusterName&amp;gt; --query servicePrincipalProfile.clientId -o tsv&lt;/code>&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>AKS cluster with managed identity&lt;/td>
-&lt;td>&lt;code>az aks show -g &amp;lt;AKSResourceGroup&amp;gt; -n &amp;lt;AKSClusterName&amp;gt; --query identityProfile.kubeletidentity.clientId -otsv&lt;/code>&lt;/td>
+&lt;td>&lt;code>az aks show -g &amp;lt;AKSResourceGroup&amp;gt; -n &amp;lt;AKSClusterName&amp;gt; --query identityProfile.kubeletidentity.clientId -o tsv&lt;/code>&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>aks-engine cluster with service principal&lt;/td>
@@ -247,11 +247,11 @@ curl -s https://raw.githubusercontent.com/Azure/aad-pod-identity/master/hack/rol
 &lt;/tr>
 &lt;tr>
 &lt;td>aks-engine cluster with system-assigned identity&lt;/td>
-&lt;td>&lt;code>az &amp;lt;vm|vmss&amp;gt; identity show -g &amp;lt;NodeResourceGroup&amp;gt; -n &amp;lt;VM|VMSS Name&amp;gt; --query principalId -otsv&lt;/code>&lt;/td>
+&lt;td>&lt;code>az &amp;lt;vm|vmss&amp;gt; identity show -g &amp;lt;NodeResourceGroup&amp;gt; -n &amp;lt;VM|VMSS Name&amp;gt; --query principalId -o tsv&lt;/code>&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>aks-engine cluster with user-assigned identity&lt;/td>
-&lt;td>&lt;code>az &amp;lt;vm|vmss&amp;gt; identity show -g &amp;lt;NodeResourceGroup&amp;gt; -n &amp;lt;VM|VMSS Name&amp;gt; --query userAssignedIdentities -otsv&lt;/code>, then copy the &lt;code>clientID&lt;/code> of the selected user-assigned identity&lt;/td>
+&lt;td>&lt;code>az &amp;lt;vm|vmss&amp;gt; identity show -g &amp;lt;NodeResourceGroup&amp;gt; -n &amp;lt;VM|VMSS Name&amp;gt; --query userAssignedIdentities -o tsv&lt;/code>, then copy the &lt;code>clientID&lt;/code> of the selected user-assigned identity&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
@@ -1160,7 +1160,7 @@ kubectl delete -f https://raw.githubusercontent.com/Azure/aad-pod-identity/maste
 &lt;p>Available from 1.5.3 release&lt;/p>
 &lt;/blockquote>
 &lt;p>Aad-pod-identity adds labels to AzureAssignedIdentities which denote the nodename, podname and podnamespace.
-When the optional parameter &lt;code>enabledScaleFeatures&lt;/code> is set to &amp;lsquo;true&amp;rsquo;, the NMI watches for AzureAssignedIdentities will do a label based filtering on
+When the optional parameter &lt;code>enableScaleFeatures&lt;/code> is set to &lt;code>true&lt;/code>, the NMI watches for AzureAssignedIdentities will do a label based filtering on
 the nodename label. This approach is taken because currently K8s does not support field selectors in CRD watches. This reduces the load which
 NMIs add on API server. When this flag is enabled, NMI will no longer work for AzureAssignedIdentities which were created before 1.5.3-rc5, since
 they don&amp;rsquo;t have the labels. Hence please note that this flag renders your setup incompatible with releases before 1.5.3-rc5.&lt;/p>
